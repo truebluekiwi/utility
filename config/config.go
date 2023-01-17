@@ -3,7 +3,6 @@ package config
 import (
 	"fmt"
 	"net/http"
-	"strings"
 	"time"
 
 	vault "github.com/hashicorp/vault/api"
@@ -19,12 +18,12 @@ func LoadConfigs(fileName string, v interface{}) error {
 		return errors.Errorf("failed to read config err: %v", err)
 	}
 
-	viper.MustBindEnv("vaultToken", "VAULT_TOKEN")
+	viper.MustBindEnv("vault-token", "VAULT_TOKEN")
 
-	vaultToken := viper.GetString("vaultToken")
-	vaultPath := viper.GetString("vaultPath")
-	vaultURL := viper.GetString("vaultURL")
-	vaultKeys := viper.GetStringMapStringSlice("vaultKeys")
+	vaultToken := viper.GetString("vault-token")
+	vaultPath := viper.GetString("vault-path")
+	vaultURL := viper.GetString("vault-url")
+	vaultKeys := viper.GetStringMapStringSlice("vault-keys")
 
 	if vaultToken == "" || vaultURL == "" || vaultPath == "" {
 		return errors.Errorf("invalid Vault attributes, %s %s %s", vaultToken, vaultURL, vaultPath)
@@ -50,7 +49,7 @@ func LoadConfigs(fileName string, v interface{}) error {
 		d := data.Data["data"].(map[string]interface{})
 
 		for _, k := range ks {
-			name := i + strings.ToUpper(k)
+			name := i + "-" + k
 			viper.Set(name, d[k])
 		}
 	}
