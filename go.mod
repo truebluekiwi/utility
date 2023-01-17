@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/hashicorp/vault/api v1.8.2
 	github.com/pkg/errors v0.9.1
+	github.com/sanity-io/litter v1.5.5
 	github.com/spf13/viper v1.14.0
 )
 
