@@ -42,9 +42,10 @@ func LoadConfigs(fileName string, v interface{}) error {
 	vaultClient.SetToken(vaultToken)
 
 	for i, ks := range vaultKeys {
-		data, err := vaultClient.Logical().Read(fmt.Sprintf("%s/%s", vaultPath, i))
+		value := fmt.Sprintf("%s/%s", vaultPath, i)
+		data, err := vaultClient.Logical().Read(value)
 		if err != nil {
-			return errors.Errorf("failed to read vault: %v", err)
+			return errors.Errorf("failed to read vault value %s, err: %v", value, err)
 		}
 		d := data.Data["data"].(map[string]interface{})
 
