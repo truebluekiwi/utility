@@ -2,11 +2,13 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
 	vault "github.com/hashicorp/vault/api"
 	"github.com/pkg/errors"
+	"github.com/sanity-io/litter"
 	"github.com/spf13/viper"
 )
 
@@ -47,6 +49,8 @@ func LoadConfigs(fileName string, v interface{}) error {
 		if err != nil {
 			return errors.Errorf("failed to read vault value %s, err: %v", value, err)
 		}
+		log.Println(value)
+		litter.Dump(data)
 		d := data.Data["data"].(map[string]interface{})
 
 		for _, k := range ks {
