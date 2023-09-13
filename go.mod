@@ -1,12 +1,13 @@
 module github.com/truebluekiwi/utility
 
-go 1.19
+go 1.20
 
 require (
 	github.com/aws/aws-sdk-go v1.44.186
 	github.com/hashicorp/vault/api v1.8.2
 	github.com/pkg/errors v0.9.1
 	github.com/sanity-io/litter v1.5.5
+	github.com/slack-go/slack v0.12.3
 	github.com/spf13/viper v1.14.0
 )
 
@@ -51,7 +52,6 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
 	github.com/pierrec/lz4 v2.5.2+incompatible // indirect
 	github.com/ryanuber/go-glob v1.0.0 // indirect
-	github.com/slack-go/slack v0.12.3 // indirect
 	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
