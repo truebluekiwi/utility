@@ -2,6 +2,7 @@ package slack
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/slack-go/slack"
 )
@@ -25,5 +26,8 @@ func Send(message string, isImportant bool) {
 	if isImportant {
 		m = importantMsg + message
 	}
-	svc.PostMessage(channel, slack.MsgOptionText(m, false))
+	_, _, err := svc.PostMessage(channel, slack.MsgOptionText(m, false))
+	if err != nil {
+		log.Println(err)
+	}
 }
