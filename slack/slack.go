@@ -42,9 +42,9 @@ func (sw *Writer) Sync() error {
 	return nil
 }
 
-func Init(appName, appEnv, appVersion, token string) {
+func Init(appName, appEnv, appVersion, slackChannel, token string) {
 	svc = slack.New(token)
-	channel = appName + "-monitoring"
+	channel = slackChannel
 	msg = fmt.Sprintf("StockAlerts *%s[%s]* `v%s`:\n", appName, appEnv, appVersion)
 	importantMsg = fmt.Sprintf("StockAlerts *%s[%s]* `v%s`:\n<!channel> ", appName, appEnv, appVersion)
 }
