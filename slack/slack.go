@@ -49,6 +49,13 @@ func Init(appName, appEnv, appVersion, slackChannel, token string) {
 	importantMsg = fmt.Sprintf("StockAlerts *%s[%s]* `v%s`:\n<!channel> ", appName, appEnv, appVersion)
 }
 
+func SendMessage(message string) {
+	_, _, err := svc.PostMessage(channel, slack.MsgOptionText(msg+message, false))
+	if err != nil {
+		log.Printf("Error: failed to SendWarning: %+v", err)
+	}
+}
+
 func SendWarning(message string) {
 	_, _, err := svc.PostMessage(channel, slack.MsgOptionText(importantMsg+message, false))
 	if err != nil {
